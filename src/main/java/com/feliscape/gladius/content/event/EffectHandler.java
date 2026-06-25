@@ -48,6 +48,7 @@ public class EffectHandler {
 
     @SubscribeEvent
     public static void onEffectAdded(MobEffectEvent.Added event){
+        if (event.getEntity().level().isClientSide()) return;
         if (event.getEntity() instanceof Player) return;
         ArrayList<MobEffectInstance> list = new ArrayList<>(event.getEntity().getActiveEffects());
         list.add(event.getEffectInstance());
@@ -57,6 +58,7 @@ public class EffectHandler {
     }
     @SubscribeEvent
     public static void onEffectRemoved(MobEffectEvent.Remove event){
+        if (event.getEntity().level().isClientSide()) return;
         if (event.getEntity() instanceof Player) return;
         ArrayList<MobEffectInstance> list = new ArrayList<>(event.getEntity().getActiveEffects());
         list.remove(event.getEffectInstance());
@@ -66,6 +68,7 @@ public class EffectHandler {
     }
     @SubscribeEvent
     public static void onEffectExpired(MobEffectEvent.Expired event){
+        if (event.getEntity().level().isClientSide()) return;
         if (event.getEntity() instanceof Player) return;
         ArrayList<MobEffectInstance> list = new ArrayList<>(event.getEntity().getActiveEffects());
         list.remove(event.getEffectInstance());
